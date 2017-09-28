@@ -1,0 +1,14 @@
+.pyc
+.project
+.pydevproject
+.settings
+.env
+/.idea*
+*.pyc
+*.egg-info
+.DS_Store
+/venv
+/env
+
+#all general temp editing files
+*~
