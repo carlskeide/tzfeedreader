@@ -15,7 +15,5 @@ setup(name="tzfeedreader",
         "requests",
         "feedparser",
         "click",
-      ],
-      dependency_links=[
-         "git+https://github.com/carlskeide/click-logging#egg=click-logging"
+        "click-log"
       ])

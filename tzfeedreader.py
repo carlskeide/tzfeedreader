@@ -12,10 +12,10 @@ import yaml
 import requests
 import feedparser
 import click
-import click_logging
+import click_log
 
-click_logging.basicConfig(logging.INFO)
-logger = click_logging.getLogger('main')
+logger = logging.getLogger("main")
+click_log.basic_config(logger)
 
 DEFAULT_CONFIG_FILE = "~/.tzfeedreader.yaml"
 DEFAULT_HISTORY_FILE = "~/.tzfeedreader.db"
@@ -198,15 +198,12 @@ class Feed(object):
 
 
 @click.command()
-@click.option("-v", "--verbose", is_flag=True)
 @click.option("-c", "--config", "config_file",
               type=click.Path(readable=True), default=DEFAULT_CONFIG_FILE)
 @click.option("-h", "--history", "history_path",
               type=click.Path(writable=True), default=DEFAULT_HISTORY_FILE)
-def run(verbose, config_file, history_path):
-    if verbose:
-        logger.setLevel(logging.DEBUG)
-
+@click_log.simple_verbosity_option(logger)
+def run(config_file, history_path):
     logger.info("Start %s", datetime.now())
     logger.debug("Reading config file")
     try:
